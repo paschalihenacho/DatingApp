@@ -7,6 +7,7 @@ using DatingApp.API.Data;
 using DatingApp.API.Dtos;
 using DatingApp.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DatingApp.API.Controllers
@@ -19,7 +20,7 @@ namespace DatingApp.API.Controllers
         private readonly IConfiguration _config;
         public AuthController(IAuthRepository repo, IConfiguration config)
         {
-            _config = config
+            _config = config;
            _repo = repo;
         }
 
@@ -38,7 +39,7 @@ namespace DatingApp.API.Controllers
                     Username = userForRegisterDto.Username
                 };
 
-                var createdUder = await _repo.Register(userToCreate, userForRegisterDto.Password);
+                var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
                 return StatusCode(201);
         }
@@ -54,13 +55,13 @@ namespace DatingApp.API.Controllers
                 // Buid a Token
                 var claims = new[]
                 {
-                    // Out Token is going to contain to cliams one is user Id and user UserName
+                    // Our Token is going to contain to cliams one is user Id and user UserName
                     new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                     new Claim(ClaimTypes.Name, userFromRepo.Username)
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8
-                    .GetBytes(_config.GetSection("appSettings:Token").Value))
+                    .GetBytes(_config.GetSection("AppSettings:Token").Value));
 
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
@@ -77,7 +78,7 @@ namespace DatingApp.API.Controllers
 
                 return Ok(new {
                     token = tokenHandler.WriteToken(token)
-                })
+                });
         }
     }
 }
