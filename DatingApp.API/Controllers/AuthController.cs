@@ -55,14 +55,14 @@ namespace DatingApp.API.Controllers
                 // Buid a Token
                 var claims = new[]
                 {
-                    // Our Token is going to contain to cliams one is user Id and user UserName
+                    // Our Token is going to contain two cliams one is user Id and user UserName
                     new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                     new Claim(ClaimTypes.Name, userFromRepo.Username)
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8
                     .GetBytes(_config.GetSection("AppSettings:Token").Value));
-
+                // After Tokens are created we need to make sure they're valid tokens
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
                 var tokenDescriptor = new SecurityTokenDescriptor
