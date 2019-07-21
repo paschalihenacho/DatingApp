@@ -18,7 +18,7 @@ namespace DatingApp.API.Migrations
                     PasswordSalt = table.Column<byte[]>(nullable: true),
                     Gender = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
-                    KnowAs = table.Column<string>(nullable: true),
+                    KnownAs = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
                     LastActive = table.Column<DateTime>(nullable: false),
                     Introduction = table.Column<string>(nullable: true),
