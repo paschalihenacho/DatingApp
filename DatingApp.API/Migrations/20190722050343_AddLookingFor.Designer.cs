@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190721215530_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190722050343_AddLookingFor")]
+    partial class AddLookingFor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,6 +62,8 @@ namespace DatingApp.API.Migrations
                     b.Property<string>("KnownAs");
 
                     b.Property<DateTime>("LastActive");
+
+                    b.Property<string>("LookingFor");
 
                     b.Property<byte[]>("PasswordHash");
 
