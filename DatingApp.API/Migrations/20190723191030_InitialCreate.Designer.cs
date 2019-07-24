@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190722050343_AddLookingFor")]
-    partial class AddLookingFor
+    [Migration("20190723191030_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,8 @@ namespace DatingApp.API.Migrations
                     b.Property<string>("Description");
 
                     b.Property<bool>("IsMain");
+
+                    b.Property<string>("PublicId");
 
                     b.Property<string>("Url");
 

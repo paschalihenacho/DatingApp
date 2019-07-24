@@ -55,6 +55,7 @@ namespace DatingApp.API.Migrations
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
+                    PublicId = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
