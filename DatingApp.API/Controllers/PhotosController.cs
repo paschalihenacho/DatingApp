@@ -25,7 +25,7 @@ namespace DatingApp.API.Controllers
         private Cloudinary _cloudinary;
 
         public PhotosController(IDatingRepository repo, IMapper mapper,
-        IOptions<CloudinarySettings> cloudinaryConfig)
+                IOptions<CloudinarySettings> cloudinaryConfig)
         {
             _cloudinaryConfig = cloudinaryConfig;
             _mapper = mapper;
@@ -84,7 +84,7 @@ namespace DatingApp.API.Controllers
 
             var photo = _mapper.Map<Photo>(photoForCreationDto);
 
-            if (userFromRepo.Photos.Any(u => u.IsMain))
+            if (!userFromRepo.Photos.Any(u => u.IsMain))
                 photo.IsMain = true;
 
             userFromRepo.Photos.Add(photo);
@@ -97,7 +97,7 @@ namespace DatingApp.API.Controllers
 
             return BadRequest("Could not add the photo"); 
         }
-            // Updating photos and setting to main photo
+         //   Updating photos and setting to main photo
         [HttpPost("{id}/setMain")]
         public async Task<IActionResult> setMainPhoto(int userId, int id)
         {

@@ -4,6 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../_models/user';
 import { Observable } from 'rxjs';
 
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Authorization' : 'Bearer ' + localStorage.getItem('token');
+//   })
+// };
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +27,7 @@ export class UserService {
   }
 
   updateUser(id: number, user: User) {
-    return this.http.put(this.baseUrl + 'users/' +id, user);
+    return this.http.put(this.baseUrl + 'users/' + id, user);
   }
 
   setMainPhoto(userId: number, id: number) {
