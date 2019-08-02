@@ -7,18 +7,18 @@
              <div class="card-body">
                 <div class="card-body">
                    <strong>Location:</strong>
-                   <p>{{user?.city}}, {{user?.country}}</p>
+                   <p>{{user.city}}, {{user?.country}}</p>
                    <div>
                       <strong>Age:</strong>
-                      <p>{{user?.age}}</p>
+                      <p>{{user.age}}</p>
                    </div>
                    <div>
                       <strong>Last Active:</strong>
-                      <p>{{user?.lastActive}}</p>
+                      <p>{{user.lastActive | timeAgo}}</p>
                    </div>
                    <div>
                       <strong>Member since:</strong>
-                      <p>{{user?.created}}</p>
+                      <p>{{user.created | date: 'mediumDate'}}</p>
                    </div>
                 </div>
                 <div class="card-footer">
