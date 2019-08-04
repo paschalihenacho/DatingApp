@@ -78,24 +78,24 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("{id}/like/{recipientId}")]
-        public async Task<IActionResult> LikeUser(int id, int recipentId)
+        public async Task<IActionResult> LikeUser(int id, int recipientId)
         {
             // see if user is authorized
             if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
-                var like = await _repo.GetLike(id, recipentId);
+                var like = await _repo.GetLike(id, recipientId);
 
             if (like != null)
                 return BadRequest("You already like this user");
 
-            if (await _repo.GetUser(recipentId) == null)
+            if (await _repo.GetUser(recipientId) == null)
                 return NotFound();
 
             like = new Like
             {
                 LikerId = id,
-                LikeeId = recipentId
+                LikeeId = recipientId
             };
 
             _repo.Add<Like>(like);
