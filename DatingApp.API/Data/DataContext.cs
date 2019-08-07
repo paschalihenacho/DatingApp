@@ -28,7 +28,7 @@ namespace DatingApp.API.Data
                     .WithMany(u => u.Likees)
                     .HasForeignKey(u => u.LikerId)
                     .OnDelete(DeleteBehavior.Restrict);
-            
+
                 builder.Entity<Message>()
                     .HasOne(u => u.Sender)
                     .WithMany(m => m.MessagesSent)

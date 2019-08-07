@@ -12,5 +12,6 @@ namespace DatingApp.API.Dtos
         {
             MessageSent = DateTime.Now;
         }
+        
     }
 }
